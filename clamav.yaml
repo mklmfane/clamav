@@ -34,13 +34,13 @@ spec:
           limits:
             cpu: "1"
             memory: 3Gi
-	    requests:
-                cpu: "1"
-                memory: 2Gi
-	    volumeMounts:
-		- name: host-fs
-	          mountPath: /host-fs
-            readOnly: true  
+	  requests:
+            cpu: "1"
+            memory: 2Gi
+	  volumeMounts:
+            - name: host-fs
+	      mountPath: /host-fs
+          readOnly: true  
 	    
        - name: virus-definition
          mountPath: /var/lib/clamav
