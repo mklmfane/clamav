@@ -37,6 +37,7 @@ spec:
 	  requests:
             cpu: "1"
             memory: 2Gi
+	
 	volumeMounts:
           - name: host-fs
 	    mountPath: /host-fs
@@ -56,14 +57,14 @@ spec:
                 exec:
                   command: ["/check.sh"]
          volumes:
-           - name: host-fs
-             hostPath:
-               path: /
-           - name: logs
-              emptyDir: {}
-           - name: virus-definition
-              hostPath: 
-              path: /tmp/clamav
+          - name: host-fs
+            hostPath:
+            path: /
+          - name: logs
+            emptyDir: {}
+          - name: virus-definition
+            hostPath: 
+            path: /tmp/clamav
 ---
 apiVersion: v1
 kind: ConfigMap
