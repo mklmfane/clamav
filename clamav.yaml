@@ -34,14 +34,15 @@ spec:
           limits:
             cpu: "1"
             memory: 3Gi
-	  requests:
+	        requests:
             cpu: "1"
             memory: 2Gi
 	
-	volumeMounts:
+	      volumeMounts:
         - name: host-fs
-	  mountPath: /host-fs
-            
+	        mountPath: /host-fs
+          readOnly: true
+
         - name: virus-definition
           mountPath: /var/lib/clamav
 	   
@@ -71,45 +72,45 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-        name: clamav
-        data:
-            clamd.conf: |
-              Foreground yes
-              Debug no
-              LeaveTemporaryFiles no
-              LogFile /dev/stdout
-              LogFileMaxSize 0
-              LogTime yes
-              LogClean no
-              TCPSocket 3310
-              TCPAddr 0.0.0.0
-              ExcludePath ^/proc/
-              ExcludePath ^/sys/
-              ExcludePath ^/host/proc/
-              ExcludePath ^/host/sys/
-              MaxDirectoryRecursion 64
-              FollowDirectorySymlinks no
-              FollowFileSymlinks no
+  name: clamav
+  data:
+    clamd.conf: |
+      Foreground yes
+      Debug no
+      LeaveTemporaryFiles no
+      LogFile /dev/stdout
+      LogFileMaxSize 0
+      LogTime yes
+      LogClean no
+      TCPSocket 3310
+      TCPAddr 0.0.0.0
+      ExcludePath ^/proc/
+      ExcludePath ^/sys/
+      ExcludePath ^/host/proc/
+      ExcludePath ^/host/sys/
+      MaxDirectoryRecursion 64
+      FollowDirectorySymlinks no
+      FollowFileSymlinks no
                
-              CrossFilesystems no
-              FollowFileSymlinks no
-            freshclam.conf: |
-              Foreground yes
-              DatabaseDirectory /var/lib/clamav
-              UpdateLogFile /dev/stdout
-              Debug no
-              LogFileMaxSize 0
-              LogTime yes
-              DatabaseOwner root
-              DNSDatabaseInfo current.cvd.clamav.net
-              DatabaseMirror database.clamav.net
-              MaxAttempts 3
-              ScriptedUpdates yes
-              CompressLocalDatabase no
-              TestDatabases yes
-              SafeBrowsing no
-              Bytecode no
-              Checks 12
-              NotifyClamd /etc/clamav/clamd.conf
-              ConnectTimeout 30
-              ReceiveTimeout 60
+      CrossFilesystems no
+      FollowFileSymlinks no
+    freshclam.conf: |
+      Foreground yes
+      DatabaseDirectory /var/lib/clamav
+      UpdateLogFile /dev/stdout
+      Debug no
+      LogFileMaxSize 0
+      LogTime yes
+      DatabaseOwner root
+      DNSDatabaseInfo current.cvd.clamav.net
+      DatabaseMirror database.clamav.net
+      MaxAttempts 3
+      ScriptedUpdates yes
+      CompressLocalDatabase no
+      TestDatabases yes
+      SafeBrowsing no
+      Bytecode no
+      Checks 12
+      NotifyClamd /etc/clamav/clamd.conf
+      ConnectTimeout 30
+      ReceiveTimeout 60
