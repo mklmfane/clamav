@@ -38,15 +38,15 @@ spec:
             cpu: "1"
             memory: 2Gi
 	
-	    volumeMounts:
-        - name: host-fs
-	  mountPath: /host-fs
+	volumeMounts:
+          - name: host-fs
+	    mountPath: /host-fs
             
-        - name: virus-definition
-          mountPath: /var/lib/clamav
+          - name: virus-definition
+            mountPath: /var/lib/clamav
 	   
-        - name: logs
-          mountPath: /var/log/clamav
+          - name: logs
+            mountPath: /var/log/clamav
           
         livenessProbe:
           periodSeconds: 10
