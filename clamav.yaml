@@ -34,9 +34,9 @@ spec:
           limits:
             cpu: "1"
             memory: 3Gi
-	  requests:
-            cpu: "1"
-            memory: 2Gi
+	requests:
+           cpu: "1"
+           memory: 2Gi
 	
 	volumeMounts:
         - name: host-fs
