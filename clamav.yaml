@@ -40,22 +40,24 @@ spec:
 		volumeMounts:
 		  - name: host-fs
 			mountPath: /host-fs
-            readOnly: true        
-          - name: virus-definition
-            mountPath: /var/lib/clamav
-          - name: logs
-            mountPath: /var/log/clamav
-            livenessProbe:
-              periodSeconds: 10
-              exec:
+            readOnly: true  
+	    
+       - name: virus-definition
+           mountPath: /var/lib/clamav
+	   
+       - name: logs
+           mountPath: /var/log/clamav
+           livenessProbe:
+             periodSeconds: 10
+             exec:
                 command: ["/check.sh"]
-            readinessProbe:
-              initialDelaySeconds: 60
-              exec:
-                 command: ["/check.sh"]
+             readinessProbe:
+                initialDelaySeconds: 60
+             exec:
+                command: ["/check.sh"]
         volumes:
-         - name: host-fs
-           hostPath:
+          - name: host-fs
+            hostPath:
               path: /
          - name: logs
               emptyDir: {}
@@ -91,7 +93,7 @@ metadata:
               CrossFilesystems no
               FollowFileSymlinks no
 
-			freshclam.conf: |
+            freshclam.conf: |
               Foreground yes
               DatabaseDirectory /var/lib/clamav
               UpdateLogFile /dev/stdout
@@ -104,7 +106,6 @@ metadata:
               DNSDatabaseInfo current.cvd.clamav.net
               DatabaseMirror database.clamav.net
               MaxAttempts 3
-
 
               ScriptedUpdates yes
               CompressLocalDatabase no
