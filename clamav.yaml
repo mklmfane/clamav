@@ -67,8 +67,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: clamav
-  data:
-    clamd.conf: |
+data:
+  clamd.conf: |
       Foreground yes
       Debug no
       LeaveTemporaryFiles no
@@ -84,11 +84,10 @@ metadata:
       ExcludePath ^/host/sys/
       MaxDirectoryRecursion 64
       FollowDirectorySymlinks no
-      FollowFileSymlinks no
-               
+      FollowFileSymlinks no         
       CrossFilesystems no
       FollowFileSymlinks no
-    freshclam.conf: |
+  freshclam.conf: |
       Foreground yes
       DatabaseDirectory /var/lib/clamav
       UpdateLogFile /dev/stdout
