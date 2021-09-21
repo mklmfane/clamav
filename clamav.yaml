@@ -56,7 +56,7 @@ spec:
       volumes:
       - name: host-fs
         hostPath:
-          path: /
+          path: /host-fs
       - name: logs
         emptyDir: {}
       - name: virus-definition
