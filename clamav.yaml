@@ -29,7 +29,9 @@ spec:
         volumeMounts:
         - name: host-fs
           mountPath: /host-fs
-          readOnly: true        
+          readOnly: true       
+        - name: Config
+          mountPath: /etc/clamav
         - name: logs
           mountPath: /var/log/clamav
         livenessProbe:
@@ -49,6 +51,9 @@ spec:
       - name: virus-definition
         hostPath: 
           path: /tmp/clamav  
+      - name: Config
+        configMap: 
+          name: clamav
 ---
 apiVersion: v1
 kind: ConfigMap
