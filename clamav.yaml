@@ -30,7 +30,7 @@ spec:
         - name: host-fs
           mountPath: /host-fs
           readOnly: true       
-        - name: Config
+        - name: config
           mountPath: /etc/clamav
         - name: logs
           mountPath: /var/log/clamav
@@ -51,7 +51,7 @@ spec:
       - name: virus-definition
         hostPath: 
           path: /tmp/clamav  
-      - name: Config
+      - name: config
         configMap: 
           name: clamav
 ---
