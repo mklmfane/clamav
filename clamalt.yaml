@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: clamd
+spec:
+  selector:
+    matchLabels:
+      aikido: clamd
+  template:
+    metadata:
+      labels:
+        aikido: clamd
+    spec:
+      volumes:
+        - name: host
+          hostPath:
+            path: /
+      containers:
+        - name: clamd
+          image: filefrog/clamav
+          volumeMounts:
+            - name: host
+              mountPath: /host
+              readOnly: yes
