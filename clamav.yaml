@@ -32,8 +32,6 @@ spec:
           readOnly: true       
         - name: config
           mountPath: /etc/clamav
-        - name: logs
-          mountPath: /var/log/clamav
         livenessProbe:
           periodSeconds: 10
           exec:
@@ -79,6 +77,12 @@ data:
     FollowFileSymlinks no      
     CrossFilesystems no
     FollowFileSymlinks no
+    ScanOLE2 true
+    OLE2BlockMacros true
+    ScanPDF true
+    ScanSWF true
+    ScanXMLDOCS true
+    ScanHWP3 true
   freshclam.conf: |
     Foreground yes
     DatabaseDirectory /var/lib/clamav
